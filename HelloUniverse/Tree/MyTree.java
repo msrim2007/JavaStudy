@@ -1,33 +1,63 @@
 package HelloUniverse.Tree;
 
 public class MyTree {
-    public MyNode root;
+    private MyNode root;
     private MyNode node;
+    
+    MyTree() {}
 
-    // 노드를 추가한다, (좌측 하위 노드)
-    public void addLeft(MyNode n, MyNode p) {
-        p.lc = n; // 상위노드의 좌측하위노드를 지정
-        n.p = p; // 추가하는 노드의 상위노드를 지정
+    public MyTree(int data) {
+        this.root = new MyNode(data);
     }
 
-    // 노드를 추가한다. (우측 하위 노드)
-    public void addRight(MyNode n, MyNode p) {
-        p.rc = n;
-        n.p = p;
+    public MyNode setRoot(int data) {
+        this.root = new MyNode(data);
+        return this.root;
     }
 
-    // 노드를 찾는다.
+    public MyNode getRoot() {
+        return this.root;
+    }
+
+    /*
+     * 검색된 노드를 클래스 변수에 담는 것으로 처리하는 로직
+     */
     public MyNode findNode(int data) {
         this._findNode(data, this.root);
         return this.node;
     }
 
     private void _findNode(int data, MyNode target) {
-        if (data == target.data) {
+        if (data == target.getData()) {
             this.node = target;
         } else {
-            if (target.lc != null) this._findNode(data, target.lc);
-            if (target.rc != null) this._findNode(data, target.rc);
+            if (target.getLeftChildNode() != null) this._findNode(data, target.getLeftChildNode());
+            if (target.getRightChildNode() != null) this._findNode(data, target.getRightChildNode());
+        }
+    }
+    
+    /*
+     * 검색된 노드를 반환하는 것으로 처리
+     */
+    public MyNode findMyNode(int data) {
+        return _findMyNode(data, this.root);
+    }
+
+    private MyNode _findMyNode(int data, MyNode node) {
+        if (data == node.getData()) {
+            return node;
+        } else {
+            if (node.getLeftChildNode() != null) {
+                MyNode tmpNode = this._findMyNode(data, node.getLeftChildNode());
+                if (tmpNode != null) return tmpNode;
+            } 
+            
+            if (node.getRightChildNode() != null) {
+                MyNode tmpNode = this._findMyNode(data, node.getRightChildNode());
+                if (tmpNode != null) return tmpNode;
+            }
+            
+            return null;
         }
     }
 }
