@@ -2,12 +2,14 @@ package HelloUniverse.Tree;
 
 public class MyTree {
     private MyNode root;
-    private MyNode node;
+    private MyNode searchNode;
     
-    MyTree() {}
+    public MyTree(MyNode node) {
+        this.root = node;
+    }
 
     public MyTree(int data) {
-        this.root = new MyNode(data);
+        this(new MyNode(data));
     }
 
     public MyNode setRoot(int data) {
@@ -24,12 +26,13 @@ public class MyTree {
      */
     public MyNode findNode(int data) {
         this._findNode(data, this.root);
-        return this.node;
+        return this.searchNode;
     }
 
+    // 노드의 데이터를 비교하는 재귀메서드
     private void _findNode(int data, MyNode target) {
         if (data == target.getData()) {
-            this.node = target;
+            this.searchNode = target;
         } else {
             if (target.getLeftChildNode() != null) this._findNode(data, target.getLeftChildNode());
             if (target.getRightChildNode() != null) this._findNode(data, target.getRightChildNode());
@@ -43,20 +46,48 @@ public class MyTree {
         return _findMyNode(data, this.root);
     }
 
+    // 노드의 데이터를 비교하는 재귀메서드
     private MyNode _findMyNode(int data, MyNode node) {
+        // 노드의 데이터와 찾는 데이터가 같으면 해당 노드를 반환
         if (data == node.getData()) {
             return node;
-        } else {
+        } else { // 해당 노드의 데이터가 찾는 데이터가 아니라면
+            // 좌측 하위 노드가 존재하면 재귀호출
             if (node.getLeftChildNode() != null) {
                 MyNode tmpNode = this._findMyNode(data, node.getLeftChildNode());
                 if (tmpNode != null) return tmpNode;
-            } 
+            }
             
+            // 우측 하위 노드가 존재하면 좌측 하위 노드를 인수로 재귀호출
             if (node.getRightChildNode() != null) {
                 MyNode tmpNode = this._findMyNode(data, node.getRightChildNode());
                 if (tmpNode != null) return tmpNode;
             }
             
+            // 하위 노드가 없거나 재귀호출이 모두 끝났는데 찾는 데이터가 없다면 null 반환
+            return null;
+        }
+    }
+
+    // 노드의 존재 여부를 확인하는 메서드
+    public boolean includes(MyNode node) {
+        return _includes(this.getRoot(), node) != null;
+    }
+
+    private MyNode _includes(MyNode myNode, MyNode node) {
+        if (myNode == node) {
+            return myNode;
+        } else {
+            if (myNode.getLeftChildNode() != null) {
+                MyNode tmpNode = _includes(myNode.getLeftChildNode(), node);
+                if (tmpNode != null) return tmpNode;
+            }
+
+            if (myNode.getRightChildNode() != null) {
+                MyNode tmpNode = _includes(myNode.getRightChildNode(), node);
+                if (tmpNode != null) return tmpNode;
+            }
+
             return null;
         }
     }

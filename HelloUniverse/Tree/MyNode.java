@@ -7,30 +7,23 @@ public class MyNode {
 
     private int data;
 
-    MyNode(int data) {
+    public MyNode(int data) {
         this.data = data;
     }
 
     public MyNode addChildNode(MyNode node) {
         if (this.lc == null) {
-            this.lc = node;
+            this.setLeftChildNode(node);
             this.lc.setParent(this);
         } else if (this.rc == null) {
-            this.rc = node;
+            this.setRightChildNode(node);
             this.rc.setParent(this);
         }
         return this;
     }
 
     public MyNode addChildNode(int data) {
-        if (this.lc == null) {
-            this.lc = new MyNode(data);
-            this.lc.setParent(this);
-        } else if (this.rc == null) {
-            this.rc = new MyNode(data);
-            this.rc.setParent(this);
-        }
-        return this;
+        return this.addChildNode(new MyNode(data));
     }
 
     public MyNode setParent(MyNode p) {
