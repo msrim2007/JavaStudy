@@ -12,11 +12,6 @@ public class MyTree {
         this(new MyNode(data));
     }
 
-    public MyNode setRoot(int data) {
-        this.root = new MyNode(data);
-        return this.root;
-    }
-
     public MyNode getRoot() {
         return this.root;
     }
@@ -71,24 +66,26 @@ public class MyTree {
 
     // 노드의 존재 여부를 확인하는 메서드
     public boolean includes(MyNode node) {
-        return _includes(this.getRoot(), node) != null;
+        return _includes(this.getRoot(), node);
     }
 
-    private MyNode _includes(MyNode myNode, MyNode node) {
+    private boolean _includes(MyNode myNode, MyNode node) {
         if (myNode == node) {
-            return myNode;
+            return true;
         } else {
             if (myNode.getLeftChildNode() != null) {
-                MyNode tmpNode = _includes(myNode.getLeftChildNode(), node);
-                if (tmpNode != null) return tmpNode;
+                if (_includes(myNode.getLeftChildNode(), node)) {
+                    return true;
+                }
             }
 
             if (myNode.getRightChildNode() != null) {
-                MyNode tmpNode = _includes(myNode.getRightChildNode(), node);
-                if (tmpNode != null) return tmpNode;
+                if (_includes(myNode.getRightChildNode(), node)) {
+                    return true;
+                }
             }
 
-            return null;
+            return false;
         }
     }
 }
