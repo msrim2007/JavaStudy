@@ -1,4 +1,4 @@
-package HelloUniverse.Singleton;
+package HelloUniverse.src.Singleton;
 
 public class Singleton {
     private String text;

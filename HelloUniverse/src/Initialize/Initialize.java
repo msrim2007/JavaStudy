@@ -1,4 +1,4 @@
-package HelloUniverse.Initialize;
+package HelloUniverse.src.Initialize;
 
 public class Initialize extends InitializeParent {
     private String num = "num 명시적 초기화"; // 인스턴스 변수

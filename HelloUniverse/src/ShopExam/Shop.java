@@ -1,4 +1,4 @@
-package HelloUniverse.ShopExam;
+package HelloUniverse.src.ShopExam;
 
 public class Shop {
     private int ipgo = 0; // 각 가게의 입고 수량

@@ -1,4 +1,4 @@
-package HelloUniverse.Initialize;
+package HelloUniverse.src.Initialize;
 
 public class InitializeParent {
     protected String pNum = "pNum 명시적 초기화";

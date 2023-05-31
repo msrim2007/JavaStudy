@@ -1,4 +1,4 @@
-package HelloUniverse.Increase;
+package HelloUniverse.src.Increase;
 
 public class Increase {
     private int num;

@@ -1,4 +1,4 @@
-package HelloUniverse.Tree;
+package HelloUniverse.src.Tree;
 
 public class MyNode {
     private MyNode p;
