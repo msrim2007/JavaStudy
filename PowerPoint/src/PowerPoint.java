@@ -2,24 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PowerPoint {
-    private List<Rectangle> rectangles = new ArrayList<>();
-    private List<Line> lines = new ArrayList<>();
+    private List<Shape> shapes = new ArrayList<>();
     
     public void draw() {
-        for(Rectangle rectangle : rectangles) {
-            rectangle.draw();
-        }
-
-        for(Line line : lines) {
-            line.draw();
+        for (Shape shape : shapes) {
+            shape.draw();
         }
     }
 
-    public void add(Rectangle rectangle) {
-        rectangles.add(rectangle);
-    }
-
-    public void add(Line line) {
-        lines.add(line);
+    public void add(Shape shape) {
+        shapes.add(shape);
     }
 }
