@@ -6,6 +6,4 @@ abstract public class Shape implements Draw{
         this.x = x;
         this.y = y;
     }
-
-    abstract public void draw();
 }
