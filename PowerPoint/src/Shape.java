@@ -1,4 +1,4 @@
-public class Shape {
+abstract public class Shape implements Draw{
     public int x;
     public int y;
 
@@ -7,5 +7,5 @@ public class Shape {
         this.y = y;
     }
 
-    public void draw() {}
+    abstract public void draw();
 }
